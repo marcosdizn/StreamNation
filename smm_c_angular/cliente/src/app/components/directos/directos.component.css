@@ -1,0 +1,17 @@
+.titulo {
+    font-size: 45px;
+    /* Tamaño de fuente */
+    font-family: 'Arial Black', sans-serif;
+    /* Fuente en negrita */
+    color: #ff9900;
+    /* Color de texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* Sombra de texto */
+    background: linear-gradient(45deg, #ff9900, #ff3399);
+    /* Degradado de fondo */
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* Aplicar degradado al texto */
+    -webkit-text-fill-color: transparent;
+    /* Ocultar el color de texto */
+}

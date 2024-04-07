@@ -1,0 +1,7 @@
+@import "primeicons/primeicons.css";
+
+.descripcion {
+    color: white;
+    /* Aumenta el valor de right para mover más a la derecha */
+    font-family: comic-sans;
+}

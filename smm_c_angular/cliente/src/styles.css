@@ -1,0 +1,12 @@
+.titulo {
+    font-size: 1.8rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-image: url(./assets/Fondo_WEB.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}

@@ -1,0 +1,80 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card-body text-center">
+                <div *ngIf="sessionState.loggedIn">
+                    <img src="../../../assets/registrado.png" width="75" height="75"
+                        style="float: left; margin-right: 20px; margin: 0 auto 0 -500px;">
+                    <p class="nombre-usuario" style="font-size: 35px;">{{sessionState.userName}}
+                        <button
+                            style="margin: 5px; border-radius: 50px; background-color: red; color: white; font-size: 21px;"
+                            (click)="logoutUsuario()">Cerrar
+                            sesión</button>
+                        </p>
+                    </div>
+                <div *ngIf=" !sessionState.loggedIn">
+                    <img src="../../../assets/anonimo.png" width="75" height="75"
+                        style="float: left; margin-right: 200px; margin: 0 auto 0 -500px;">
+                    <p class="nombre-usuario" style="font-size: 35px; ">Anónimo</p>
+                </div>
+                <span class="titulo">Bienvenido a <br> STREAM NATION</span>
+                <br> <br> <br> <br> <br>
+                <h2> El lugar que reúne a todos tus Streamers e Influencers!</h2>
+                <form class="mt-3" [formGroup]="modalForm">
+                    <button class="btn btn-custom2"
+                        style="margin: 5px; border-radius: 50px; background-color: blue; color: white; font-size: 25px;"
+                        (click)="acercaDe()">Acerca De</button>
+                    <br> <br> <br> <br> <br>
+                    <button class="btn btn-custom" (click)="openModel()" *ngIf="!sessionState.loggedIn"
+                        style="margin: 5px; border-radius: 50px; background-color: blue; color: white; font-size: 40px; padding: 20px 30px;">Únete
+                        a nuestra Comunidad!!!</button>
+                    <button class="btn btn-custom"
+                        style="margin: 5px; border-radius: 50px; background-color: blue; color: white; font-size: 40px; padding: 20px 30px;"
+                        (click)="verDirectos()">Ver Directos!!!</button>
+                    <br> <br> <br>
+                    <img src="../../../assets/plataformas-sociales-unscreen.gif" width="1280" height="720">
+                    <br> <br> <br>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog custom-modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="btn-close" (click)="closeModel()"></button>
+            <div class="modal-header">
+                <h4 class="modal-title" *ngIf="modalOption">Regístrate en StreamNation</h4>
+                <h4 class="modal-title" *ngIf="!modalOption">Inicia sesión en StreamNation</h4>
+            </div>
+            <form method="dialog" [formGroup]="modalForm">
+                <div style="display: flex; align-items: center;">
+                    <label for="nombre">Nombre de Usuario</label>
+                </div>
+                <input type="text" [(ngModel)]="usuario.nombre" formControlName="nombre"
+                    class="form-control form-control-lg">
+                <div style="display: flex; align-items: center;">
+                    <label for="contrasena">Contraseña</label>
+                </div>
+                <input type="password" [(ngModel)]="usuario.contrasena" formControlName="contrasena"
+                    class="form-control form-control-lg">
+                <div style="text-align: center;">
+                    <button *ngIf="modalOption" (click)="registrarUsuario()" type="submit" class="btn btn-primary"
+                        style="margin:5px" [disabled]="modalForm.invalid">Registrarse</button>
+                    <button *ngIf="!modalOption" (click)="loginUsuario()" type="submit" class="btn btn-primary"
+                        style="margin:5px" [disabled]="modalForm.invalid">Iniciar sesión</button>
+                </div>
+                <p></p>
+                <div class="modal-footer" (click)="cambiaModalForm()" *ngIf="modalOption">¿Ya tienes una cuenta?</div>
+                <div class="modal-footer" (click)="cambiaModalForm()" *ngIf="!modalOption">¿No tienes una cuenta?
+                </div>
+                <div *ngIf="modalOption">
+                    <p><a (click)="cambiaModalForm()" class="enlace-azul" style="font-size: 20px;">Inicia sesión</a></p>
+                </div>
+                <div *ngIf="!modalOption">
+                    <p> <a (click)="cambiaModalForm()" class="enlace-azul" style="font-size: 20px;">Regístrate</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
