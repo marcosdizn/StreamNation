@@ -1,42 +1,101 @@
-***************Instalación (Windows) ******************
+# StreamNation – Live Streaming Platform  
 
-Autor: marcosdizn
+## Introduction  
+**StreamNation** is a **powerful, real-time streaming platform** designed to broadcast both **live and pre-recorded videos** with ease. Built with **Node.js, Angular, Nginx, and RTMP**, it enables **seamless video streaming** through a **public webpage**.  
 
-**MongoDB**
-Seguir los pasos del manual de instalación (en el paso 3b instalar MongoDB como un servicio Windows):
-https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
+This project integrates **Ngrok** for secure tunneling and **OBS Studio** for high-quality streaming, making it ideal for **developers exploring streaming technologies, AI-powered video processing, and real-time broadcasting solutions.**  
 
-Para iniciar o detener el servicio MongoDB, click derecho => (iniciar o detener), desde la consola de servicios de Windows.
+---
 
+## Key Features  
 
-**Node.js**
-Descargar el Windows Installer desde https://nodejs.org/en/download/
+- 🎥 **Live Video Streaming** – Effortlessly broadcast live content.  
+- 📼 **Pre-recorded Video Streaming** – Stream stored videos with ease.  
+- 🌐 **Public Webpage Integration** – Share your streams via an accessible URL.  
+- 🔒 **Secure Tunneling with Ngrok** – Generate a public address for easy sharing.  
+- 🚀 **High-performance Backend with Nginx** – Ensures smooth and scalable streaming.  
+- 🎬 **OBS Studio Support** – Enables professional-grade live recording & broadcasting.  
 
-**Angular**
-Desde un terminal windows ejecutar el siguiente comando: npm install -g @angular/cli
+---
 
-**Lanzar la aplicación web**
-Ejecutar el siguiente comando solo la primera vez para instalar todas las dependencias Angular del proyecto, 2 veces (una dentro de la carpeta cliente y otra en servidor): npm install
+## Tech Stack  
 
-Ejecutar el cliente: dentro de cliente haremos npm start, después abrimos un navegador en http://localhost:4200
-Ejecutar el servidor: abrir otro terminal dentro de servidor, ejecutar el comando: npm run dev, si Mongo está iniciado debería mostrarse el mensaje BD Conectada.
+- 🟢 **Backend**: Node.js, Nginx  
+- 🔷 **Frontend**: Angular  
+- 🎥 **Streaming Protocol**: RTMP  
+- 🌍 **Tools**: Ngrok, OBS Studio  
 
-** NGROK**
-Crear una cuenta gratuita en https://ngrok.com/ y descargar el zip desde https://ngrok.com/download
-Descomprimir el zip con el ejecutable ngrok.exe
+---
 
-En la web de Ngrok, en el panel de control de nuestra cuenta, debemos ir al apartado getting started -> your authtoken, y copiar el siguiente comando para ejecutar en la ruta donde está el ngrok.exe (este comando no funciona en PowerShell, solo funciona a través de la terminal clásica de Windows):
+## Installation Guide (Windows)  
 
-ngrok config add-authtoken <your_authtoken>
-Para establecer el tunel del streaming de video: ngrok http 80
-Para la página web: ngrok http --host-header=rewrite 4200
+### Prerequisites  
+Before setting up the project, install the following:  
 
-**NGINX** 
-Dentro de la carpeta nginx, ejecutar ngnix.exe como administrador
+1. **MongoDB** – Follow the official [MongoDB Installation Guide](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/).  
+   - Install MongoDB as a **Windows service** (step 3b in the guide).  
+   - Start or stop the service via the **Windows Services Console**.  
 
-**OBS**
-Descargar desde https://obsproject.com/es/download
-Vamos a Archivo->Ajustes->Emisión y marcamos en Servicio: Personalizado..., en Servidor: rtmp://localhost/live y en Clave de retransmisión: stream?psk=1234
+2. **Node.js** – Download and install from [Node.js official site](https://nodejs.org/en/download/).  
 
-**Insertar el enlace de Ngrok en nuestra aplicación web**
-Ir a cliente/src/app/components/directo y pegar la URL que empieza por https generada por ngrok (donde pone Forwarding), en el archivo directo.component.html, pegar la url en el atributo src del tag iframe del fichero html.
+3. **Angular** – Install the Angular CLI globally by running:  
+   ```sh
+   npm install -g @angular/cli
+   ```
+## Running the Application
+
+1. Install dependencies (Run this in both the client and server folders):
+  ```sh
+  npm install
+  ```
+2. Start the Client:
+  ```sh
+  npm start
+  ```
+- Open your browser and go to: http://localhost:4200
+
+4. Start the Server:
+
+  ```sh
+  npm run dev
+  ```
+
+- If MongoDB is running, you should see: "BD Connected"
+
+## Ngrok Setup
+
+1. Create a free account at Ngrok and download the ZIP from Ngrok Download.
+2. Extract the ZIP and run ngrok.exe.
+3. Authenticate using the command (replace <your_authtoken> with your Ngrok token):
+ ```sh
+  ngrok config add-authtoken <your_authtoken>
+  ```
+4. Create tunnels:
+- For video streaming:
+```sh
+ngrok http 80
+```
+- For the web application:
+ ```sh
+  ngrok http --host-header=rewrite 4200
+  ```
+
+## Nginx Setup
+Run nginx.exe as an administrator from the nginx folder.
+
+## OBS Studio Setup
+1. Download OBS Studio from OBS Project.
+1. Open OBS Studio, navigate to File → Settings → Stream and configure:
+- Service: Custom...
+- Server: rtmp://localhost/live
+- Stream Key: stream?psk=1234
+
+## Adding the Ngrok Link to the Web Application
+- Open the file:
+ ```sh
+  client/src/app/components/directo/directo.component.html
+  ```
+Replace the iframe src with the Ngrok URL (Forwarding link).
+
+## Contributing
+Feel free to fork this repository and submit issues or pull requests. Contributions are always welcome!
